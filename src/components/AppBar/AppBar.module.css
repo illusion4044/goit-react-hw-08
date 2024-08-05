@@ -1,0 +1,36 @@
+.appBar {
+    background-color: #343a40;
+    color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navLink {
+    color: #fff;
+    margin-left: 15px;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .navLink.active {
+    text-decoration: underline;
+  }
+  
+  .logoutButton {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .logoutButton:hover {
+    text-decoration: underline;
+  }
+  
