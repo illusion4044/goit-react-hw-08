@@ -1,12 +1,11 @@
 import { useDispatch } from 'react-redux';
 import { Formik, Form, Field } from 'formik';
-import { login } from '../../redux/auth/operations';
-
+import { logIn } from '../../redux/auth/operations'; 
 const LoginPage = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values) => {
-    dispatch(login(values));
+    dispatch(logIn(values));
   };
 
   return (
