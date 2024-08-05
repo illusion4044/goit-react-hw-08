@@ -1,27 +1,11 @@
-import { useDispatch } from 'react-redux';
-import { Formik, Form, Field } from 'formik';
-import { logIn } from '../../redux/auth/operations'; 
-const LoginPage = () => {
-  const dispatch = useDispatch();
+import DocumentTitle from '../../components/DocumentTitle/DocumentTitle';
+import { LoginForm } from '../../components/LoginForm/LoginForm';
 
-  const handleSubmit = (values) => {
-    dispatch(logIn(values));
-  };
-
+export default function LoginPage() {
   return (
-    <Formik
-      initialValues={{ email: '', password: '' }}
-      onSubmit={handleSubmit}
-    >
-      <Form>
-        <label htmlFor="email">Email</label>
-        <Field type="email" name="email" />
-        <label htmlFor="password">Password</label>
-        <Field type="password" name="password" />
-        <button type="submit">Login</button>
-      </Form>
-    </Formik>
+    <div>
+      <DocumentTitle>Login</DocumentTitle>
+      <LoginForm />
+    </div>
   );
-};
-
-export default LoginPage;
+}

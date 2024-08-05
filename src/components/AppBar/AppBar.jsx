@@ -1,40 +1,21 @@
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
-import { NavLink } from 'react-router-dom';
-import styles from './AppBar.module.css';
+import { Navigation } from '../Navigation/Navigation';
+import { UserMenu } from '../UserMenu/UserMenu';
+import { AuthNav } from '../AuthNav/AuthNav';
+import SearchBox from '../SearchBox/SearchBox';
+import css from './AppBar.module.css';
+import { useLocation } from 'react-router-dom';
 
-export default function AppBar() {
+export const AppBar = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const location = useLocation();
 
   return (
-    <header className={styles.appBar}>
-      <nav className={styles.nav}>
-        <NavLink to="/" className={styles.navLink}>
-          Home
-        </NavLink>
-        {isLoggedIn ? (
-          <>
-            <NavLink to="/contacts" className={styles.navLink}>
-              Contacts
-            </NavLink>
-            <button
-              className={styles.logoutButton}
-              onClick={() => console.log('Logout')}
-            >
-              Logout
-            </button>
-          </>
-        ) : (
-          <>
-            <NavLink to="/register" className={styles.navLink}>
-              Register
-            </NavLink>
-            <NavLink to="/login" className={styles.navLink}>
-              Login
-            </NavLink>
-          </>
-        )}
-      </nav>
+    <header className={css.header}>
+      <Navigation />
+      {location.pathname === '/contacts' && <SearchBox />}
+      {isLoggedIn ? <UserMenu /> : <AuthNav />}
     </header>
   );
-}
+};

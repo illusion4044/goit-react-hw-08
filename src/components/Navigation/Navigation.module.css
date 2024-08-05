@@ -1,0 +1,15 @@
+.nav {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .link {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 1.2rem;
+  }
+  
+  .link.active {
+    font-weight: bold;
+  }
+  

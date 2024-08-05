@@ -1,30 +1,11 @@
-import { useDispatch } from 'react-redux';
-import { Formik, Form, Field } from 'formik';
-import { register } from '../../redux/auth/operations';
+import DocumentTitle from '../../components/DocumentTitle/DocumentTitle';
+import RegisterForm from '../../components/RegisterForm/RegisterForm';
 
-const RegistrationPage = () => {
-  const dispatch = useDispatch();
-
-  const handleSubmit = (values) => {
-    dispatch(register(values));
-  };
-
+export default function RegisterPage() {
   return (
-    <Formik
-      initialValues={{ name: '', email: '', password: '' }}
-      onSubmit={handleSubmit}
-    >
-      <Form>
-        <label htmlFor="name">Name</label>
-        <Field type="text" name="name" />
-        <label htmlFor="email">Email</label>
-        <Field type="email" name="email" />
-        <label htmlFor="password">Password</label>
-        <Field type="password" name="password" />
-        <button type="submit">Register</button>
-      </Form>
-    </Formik>
+    <div>
+      <DocumentTitle>Registration</DocumentTitle>
+      <RegisterForm />
+    </div>
   );
-};
-
-export default RegistrationPage;
+}
