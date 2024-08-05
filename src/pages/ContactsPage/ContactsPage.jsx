@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import PageTitle from '../../components/PageTitle/PageTitle';
+import ContactList from '../../components/ContactList/ContactList';
+import ContactForm from '../../components/ContactForm/ContactForm';
+import SearchBox from '../../components/SearchBox/SearchBox';
 import { fetchContacts } from '../../redux/contacts/operations';
-import { selectFilteredContacts, selectLoading, selectError } from '../../redux/contacts/slice';
-import { changeFilter } from '../../redux/filters/slice';
+import {  selectLoading, selectError } from '../../redux/contacts/slice';
 
-const ContactsPage = () => {
+export default function ContactsPage() {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectFilteredContacts);
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
 
@@ -14,22 +16,14 @@ const ContactsPage = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  const handleFilterChange = (e) => {
-    dispatch(changeFilter(e.target.value));
-  };
-
   return (
     <div>
-      <input type="text" placeholder="Filter contacts" onChange={handleFilterChange} />
+      <PageTitle>Your contacts</PageTitle>
+      <ContactForm />
+      <SearchBox />
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
-      <ul>
-        {contacts.map(contact => (
-          <li key={contact.id}>{contact.name}</li>
-        ))}
-      </ul>
+      {!loading && !error && <ContactList />}
     </div>
   );
-};
-
-export default ContactsPage;
+}
